@@ -39,7 +39,7 @@ h1, h3, p, footer, .settings, .howto p, .howto h3 {
   color: var(--lightblue);
 }
 
-a, textarea, input[type=number] {
+a, textarea, input[type=number], select {
   color: var(--orange);
 }
 
@@ -145,7 +145,8 @@ footer {
   grid-template-areas:
   'card_scale scale'
   'margin_cards marginc'
-  'margin_document margind';
+  'margin_document margind'
+  'doc_type doc_t';
   grid-auto-columns: 1fr 10fr;
 }
 
@@ -157,11 +158,23 @@ footer {
   grid-area: margin_cards;
 }
 
+#doc_type {
+  grid-area: doc_type;
+  border: 2px solid var(--orange);
+  width: 77px;
+  margin: 0.25rem;
+  font-size: 18px;
+  text-align: center;
+  border-radius: 9px;
+  background: none;
+  font-size: 24px;
+}
+
 #margin_document {
   grid-area: margin_document;
 }
 
-.scale, .marginc, .margind{
+.scale, .marginc, .margind, .doc_t{
   position: relative;
   top: 0.4rem;
   cursor: help;
@@ -173,6 +186,10 @@ footer {
 
 .marginc {
   grid-area: marginc;
+}
+
+.doc_t {
+  grid-area: doc_t;
 }
 
 .margind {
@@ -373,6 +390,7 @@ button:active {
     'card_scale'
     'marginc'
     'margin_cards'
+    'doc_type'
     'margind'
     'margin_document';
   }
