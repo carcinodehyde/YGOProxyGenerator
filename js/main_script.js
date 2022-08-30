@@ -52,8 +52,8 @@ var failedLines = [];
 const pdfPointsPerInch = 72;
 const cardWidth = 2.32 * pdfPointsPerInch;// a card is 2.32 inch and 1 point is 1/72 inch
 //const cardHeight = 3.25 * pdfPointsPerInch;
-const pdfWidth = 8.26 * pdfPointsPerInch;
-const pdfHeight= 11.69 * pdfPointsPerInch;
+var pdfWidth = 8.26 * pdfPointsPerInch;
+var pdfHeight= 11.69 * pdfPointsPerInch;
 
 
 
@@ -110,13 +110,26 @@ function getImageUrl(cardNameOrId){
 	};
 }
 
+function setPaperSize() {
+	var paperSize = document.getElementById("doc_type").value
+	if (paperSize === "a4") {
+		pdfWidth = 8.26 * pdfPointsPerInch;
+		pdfHeight= 11.69 * pdfPointsPerInch;
+		return new PDFDocument();
+	} else {
+		pdfWidth = 16.53 * pdfPointsPerInch;
+		pdfHeight= 11.7 * pdfPointsPerInch;
+		return new PDFDocument({size: 'A3', layout: 'landscape'});
+	}
+}
+
 
 function generateProxies(){
 	imagePos = 0;
 	failedLines = [];
 	
 	// create a document the same way as above
-	const doc = new PDFDocument;
+	const doc = setPaperSize();
 
 	// pipe the document to a blob
 	const stream = doc.pipe(blobStream());
